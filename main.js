@@ -33,7 +33,7 @@ hamburger.addEventListener('click', () => {
   hamburger.setAttribute('aria-expanded', String(open));
 });
 
-/* ---------- 2. SCROLL REVEAL ---------- */
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -44,13 +44,11 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ---------- 3. PROJECTS ---------- */
-/* Each project: title, blurb, tags, a short glyph for the card art,
-   a status stamp, and a repo link (null = not yet public). */
+
 const projects = [
   {
     title: 'Axelot',
-    desc: 'A self-hosted, open alternative to mem-0 that gives AI agents persistent memory. My biggest build: storage, retrieval, and an API layer to write and recall context across sessions.',
+    desc: 'A self-hosted, open alternative to Mem0 that gives AI agents persistent memory. My biggest build: storage, retrieval, and an API layer to write and recall context across sessions.',
     tags: ['Python', 'Vector DB', 'API'],
     glyph: 'AX',
     stamp: 'live',
@@ -106,6 +104,7 @@ projects.forEach(p => {
   const off = p.repo ? '' : ' card__art--off';
   const art = `<div class="card__art${off}">
       <span class="glyph">${p.glyph}</span>
+      <span class="card__caption">[ preview ]</span>
       <span class="stamp">${p.stamp}</span>
     </div>`;
 
@@ -126,7 +125,6 @@ projects.forEach(p => {
   grid.appendChild(card);
 });
 
-/* ---------- 4. CONTACT FORM ---------- */
 const form = document.getElementById('contactForm');
 const status = document.getElementById('formStatus');
 
@@ -145,9 +143,6 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  /* No backend on GitHub Pages, so this opens the visitor's mail client
-     with the message prefilled. Swap for a Formspree or EmailJS endpoint
-     to receive submissions directly. */
   const subject = encodeURIComponent('Portfolio contact from ' + name);
   const body = encodeURIComponent(message + '\n\nfrom ' + name + ' (' + email + ')');
   window.location.href = 'mailto:gurtejpal@example.com?subject=' + subject + '&body=' + body;
@@ -157,5 +152,4 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
-/* ---------- 5. FOOTER YEAR ---------- */
 document.getElementById('year').textContent = new Date().getFullYear();

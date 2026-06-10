@@ -10,10 +10,8 @@
 <body>
   <a class="skip" href="#about">Skip to content</a>
 
-  <!-- ============ NAV ============ -->
   <header class="topbar">
     <a class="topbar__logo" href="#home" aria-label="Home">
-      <img src="assets/logo06f37cb41.png" alt="" width="34" height="34" />
       <span>GSG</span>
     </a>
     <nav class="topbar__nav" aria-label="Primary">
@@ -28,7 +26,6 @@
     </button>
   </header>
 
-  <!-- ============ HERO / FLYER ============ -->
   <main id="home">
     <section class="flyer" aria-label="Intro">
       <div class="flyer__grain" aria-hidden="true"></div>
@@ -68,11 +65,12 @@
       <p class="scrollcue">scroll for the full set</p>
     </section>
 
-    <!-- ============ ABOUT ============ -->
     <section id="about" class="block reveal">
       <div class="block__label"><span>01</span> ABOUT</div>
       <div class="about">
-        <img class="about__pic" src="" alt="Portrait of Gurtejpal Singh Gurm" />
+        <div class="about__pic about__pic--mono">
+          <span>GSG</span>
+        </div>
         <div class="about__body">
           <h2>Telecom by trade, cloud by study.</h2>
           <p>I am a telecommunications technician based in New York City with over a year of
@@ -90,7 +88,6 @@
       </div>
     </section>
 
-    <!-- ============ SKILLS ============ -->
     <section id="skills" class="block reveal">
       <div class="block__label"><span>02</span> SKILLS</div>
       <div class="skills">
@@ -132,56 +129,72 @@
       </div>
 
       <div class="logowall" aria-label="Tools and technologies">
-        <img src="assets/python8422e3b3.png" alt="Python" />
-        <img src="assets/java7b6569e8.png" alt="Java" />
-        <img src="assets/aws7b4cd421.png" alt="AWS" />
-        <img src="assets/azuread55067f.png" alt="Azure" />
-        <img src="assets/docker602a695a.png" alt="Docker" />
-        <img src="assets/ubuntu6cdfb66a.png" alt="Ubuntu" />
-        <img src="assets/wireshark03b75a7a.png" alt="Wireshark" />
-        <img src="assets/virtualboxd0fddcae.png" alt="VirtualBox" />
-        <img src="assets/github3b4e1609.png" alt="GitHub" />
+        <img src="assets/icons/python.svg" alt="Python" />
+        <img src="assets/icons/java.svg" alt="Java" />
+        <img src="assets/icons/aws.svg" alt="AWS" />
+        <img src="assets/icons/azure.svg" alt="Azure" />
+        <img src="assets/icons/docker.svg" alt="Docker" />
+        <img src="assets/icons/ubuntu.svg" alt="Ubuntu" />
+        <img src="assets/icons/wireshark.svg" alt="Wireshark" />
+        <img src="assets/icons/virtualbox.svg" alt="VirtualBox" />
       </div>
     </section>
 
-    <!-- ============ PROJECTS ============ -->
     <section id="projects" class="block reveal">
       <div class="block__label"><span>03</span> PROJECTS</div>
-      <div class="projects" id="projectGrid"><!-- injected by main.js --></div>
+      <div class="projects" id="projectGrid"></div>
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
     <section id="experience" class="block reveal">
       <div class="block__label"><span>04</span> EXPERIENCE</div>
       <div class="timeline">
         <article class="tl">
-          <span class="tl__rule" aria-hidden="true"></span>
-          <h3>Telecommunications Technician</h3>
-          <p class="tl__meta">New York City · 1 year and counting</p>
-          <p>Field technician handling the full physical layer of small and mid-size network
-            installs, from rough-in to live service.</p>
-          <ul>
-            <li>Pull, route, and dress structured cabling, then terminate to RJ45 plugs and keystone jacks and certify the runs.</li>
-            <li>Mount and configure access points and switches, and bring up both analog and VoIP phone lines for client sites.</li>
-            <li>Troubleshoot live connectivity and voice issues on site, tracing faults back through patch panels and switch ports.</li>
-            <li>Work to WHMIS safety standards and coordinate with other trades on active job sites.</li>
-          </ul>
+          <div class="tl__left">
+            <p class="tl__meta">CUNY Queens College · 1 year+</p>
+            <div class="tl__tags">
+              <span>Structured Cabling</span>
+              <span>RJ45</span>
+              <span>Switching</span>
+              <span>VoIP</span>
+              <span>OSHA</span>
+            </div>
+          </div>
+          <div class="tl__right">
+            <h3>Telecommunications Technician</h3>
+            <p>Field technician handling the full physical layer of small and mid-size network
+              installs, from rough-in to live service.</p>
+            <ul>
+              <li>Pull, route, and dress structured cabling, then terminate to RJ45 plugs and keystone jacks and certify the runs.</li>
+              <li>Mount and configure access points and switches, and bring up both analog and VoIP phone lines for client sites.</li>
+              <li>Troubleshoot live connectivity and voice issues on site, tracing faults back through patch panels and switch ports.</li>
+              <li>Work to OSHA HazCom safety standards and coordinate with other trades on active job sites.</li>
+            </ul>
+          </div>
         </article>
         <article class="tl">
-          <span class="tl__rule" aria-hidden="true"></span>
-          <h3>Student, Networking and Cloud</h3>
-          <p class="tl__meta">CUNY Queens College · Ongoing</p>
-          <p>Building toward a cloud and network engineering career alongside full-time field work.</p>
-          <ul>
-            <li>Studying for the CCNA, Security+, and AWS certifications.</li>
-            <li>Run a personal homelab for routing, switching, virtualization, and packet capture practice.</li>
-            <li>Write Python and Bash to automate repetitive lab and field tasks.</li>
-          </ul>
+          <div class="tl__left">
+            <p class="tl__meta">CUNY Queens College · Ongoing</p>
+            <div class="tl__tags">
+              <span>CCNA</span>
+              <span>Security+</span>
+              <span>AWS</span>
+              <span>Homelab</span>
+              <span>Python</span>
+            </div>
+          </div>
+          <div class="tl__right">
+            <h3>Student, Networking and Cloud</h3>
+            <p>Building toward a cloud and network engineering career alongside full-time field work.</p>
+            <ul>
+              <li>Studying for the CCNA, Security+, and AWS certifications.</li>
+              <li>Run a personal homelab for routing, switching, virtualization, and packet capture practice.</li>
+              <li>Write Python and Bash to automate repetitive lab and field tasks.</li>
+            </ul>
+          </div>
         </article>
       </div>
     </section>
 
-    <!-- ============ CONTACT ============ -->
     <section id="contact" class="block reveal">
       <div class="block__label"><span>05</span> CONTACT</div>
       <div class="contact">
