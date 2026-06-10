@@ -1,0 +1,34 @@
+WIREFRAME (replace with hand-drawn or digital version)
+
++---------------------------------------------------+
+| [logo] GSG        about skills projects exp  HIRE |
++---------------------------------------------------+
+|                                                   |
+|  GURTEJPAL          ___          currently        |
+|  SINGH GURM         |||          ON AIR           |
+|  ==========                      London, ON       |
+|                                                   |
+|  TELECOM TECHNICIAN                               |
+|  CLOUD  aspiring devops                           |
+|  CODE   python bash react                         |
+|  ----------------------------------------------   |
+|  OPEN TO WORK ...            [ GET ON THE LIST ]  |
++---------------------------------------------------+
+| 01 ABOUT                                          |
+| [photo]   headline + bio + goal                   |
++---------------------------------------------------+
+| 02 SKILLS                                         |
+| Telecom | Networking | Code | Cloud               |
+| [ ---- logo wall ---- ]                           |
++---------------------------------------------------+
+| 03 PROJECTS                                       |
+| [card] [card]                                     |
+| [card] [card]                                     |
+| [card] [card]                                     |
++---------------------------------------------------+
+| 04 EXPERIENCE   | timeline entries                |
++---------------------------------------------------+
+| 05 CONTACT      pitch + links | [form]            |
++---------------------------------------------------+
+| footer                                            |
++---------------------------------------------------+
