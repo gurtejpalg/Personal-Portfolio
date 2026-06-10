@@ -2,7 +2,8 @@
    main.js — interactivity for the portfolio
    - smooth jump nav + mobile menu
    - scroll-reveal of sections
-   - project cards injected from data
+   - project cards injected from data (no external screenshots;
+     each card uses a coded glyph in the flyer style)
    - contact form validation + feedback
    ========================================================= */
 
@@ -44,49 +45,55 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 /* ---------- 3. PROJECTS ---------- */
-/* Each project: title, blurb, tags, screenshot (or null = "not available"),
-   and a repo link (null = project not yet public). */
+/* Each project: title, blurb, tags, a short glyph for the card art,
+   a status stamp, and a repo link (null = not yet public). */
 const projects = [
   {
-    title: 'SecureBank Dashboard',
-    desc: 'A security-themed banking dashboard concept — transactions, 2FA status, fraud monitoring, and a feedback loop. Built to practice clean component layout and auth-aware UI.',
-    tags: ['React', 'Tailwind', 'Auth'],
-    shot: 'assets/securebankdash72ecd3f1.jpg',
-    repo: 'https://github.com/'
-  },
-  {
-    title: 'NetDash — Network Monitor',
-    desc: 'A homelab dashboard that surfaces switch, VLAN, and device health at a glance. Ties my telecom field work to a software front end.',
-    tags: ['Python', 'Networking', 'Homelab'],
-    shot: 'assets/netdashlandingf0e35e6e.png',
-    repo: 'https://github.com/'
-  },
-  {
-    title: 'ATS Résumé Screener',
-    desc: 'An AI wrapper that scores a résumé against a job posting and flags gaps — a riff on tools like Set79, built to understand how applicant tracking actually parses text.',
-    tags: ['Python', 'LLM API', 'NLP'],
-    shot: 'assets/atsscreenerlanding7260b709.png',
-    repo: 'https://github.com/'
-  },
-  {
     title: 'Axelot',
-    desc: 'A self-hosted, open alternative to mem-0 — persistent memory for AI agents. My biggest build; storage, retrieval, and an API layer.',
+    desc: 'A self-hosted, open alternative to mem-0 that gives AI agents persistent memory. My biggest build: storage, retrieval, and an API layer to write and recall context across sessions.',
     tags: ['Python', 'Vector DB', 'API'],
-    shot: 'assets/axelotlanding228c1735.png',
+    glyph: 'AX',
+    stamp: 'live',
+    repo: 'https://github.com/'
+  },
+  {
+    title: 'ATS Resume Screener',
+    desc: 'An AI wrapper that scores a resume against a job posting and flags the gaps, built to understand how applicant tracking systems actually parse and rank text.',
+    tags: ['Python', 'LLM API', 'NLP'],
+    glyph: 'ATS',
+    stamp: 'live',
     repo: 'https://github.com/'
   },
   {
     title: 'RA-Noti-Bot',
-    desc: 'A bot that watches Resident Advisor for new techno events and pings me before tickets sell out. Small, useful, and very on-brand.',
+    desc: 'A bot that watches event listings for new techno shows and pings me before tickets sell out. Small, useful, and very on brand.',
     tags: ['Python', 'Bash', 'Automation'],
-    shot: null,
+    glyph: 'RA',
+    stamp: 'live',
     repo: 'https://github.com/'
   },
   {
+    title: 'NetDash',
+    desc: 'A homelab dashboard that surfaces switch, VLAN, and device health at a glance. Ties my telecom field work to a software front end.',
+    tags: ['Python', 'Networking', 'Homelab'],
+    glyph: 'NET',
+    stamp: 'in progress',
+    repo: null
+  },
+  {
     title: 'Untitled (SonicPi)',
-    desc: 'A techno track written entirely in code with SonicPi — four-to-the-floor kick, acid line, and a slowly opening filter. Where the music and the engineering meet.',
+    desc: 'A techno track written entirely in code with SonicPi: four-to-the-floor kick, an acid line, and a filter that opens over eight bars. Where the music and the engineering meet.',
     tags: ['SonicPi', 'Ruby', 'Audio'],
-    shot: null,
+    glyph: '♪',
+    stamp: 'in progress',
+    repo: null
+  },
+  {
+    title: 'Cloud Lab',
+    desc: 'An AWS sandbox where I deploy and tear down small networked environments to study for certification. A space to practice what the exams only describe.',
+    tags: ['AWS', 'Docker', 'Linux'],
+    glyph: 'CLD',
+    stamp: 'in progress',
     repo: null
   }
 ];
@@ -96,18 +103,20 @@ projects.forEach(p => {
   const card = document.createElement('article');
   card.className = 'card';
 
-  const shot = p.shot
-    ? `<img class="card__shot" src="${p.shot}" alt="Screenshot of ${p.title}" loading="lazy" />`
-    : `<div class="card__shot--empty">project not available — coming soon</div>`;
+  const off = p.repo ? '' : ' card__art--off';
+  const art = `<div class="card__art${off}">
+      <span class="glyph">${p.glyph}</span>
+      <span class="stamp">${p.stamp}</span>
+    </div>`;
 
   const tags = p.tags.map(t => `<span>${t}</span>`).join('');
 
   const link = p.repo
-    ? `<a class="card__link" href="${p.repo}" target="_blank" rel="noopener">View on GitHub ↗</a>`
+    ? `<a class="card__link" href="${p.repo}" target="_blank" rel="noopener">View on GitHub</a>`
     : `<span class="card__link card__link--off">repo not yet public</span>`;
 
   card.innerHTML = `
-    ${shot}
+    ${art}
     <div class="card__body">
       <h3 class="card__title">${p.title}</h3>
       <p class="card__desc">${p.desc}</p>
@@ -136,13 +145,14 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  /* No backend on GitHub Pages — open the user's mail client with the message prefilled.
-     Swap this for a Formspree/EmailJS endpoint to receive submissions directly. */
-  const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-  const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-  window.location.href = `mailto:gurtejpal@example.com?subject=${subject}&body=${body}`;
+  /* No backend on GitHub Pages, so this opens the visitor's mail client
+     with the message prefilled. Swap for a Formspree or EmailJS endpoint
+     to receive submissions directly. */
+  const subject = encodeURIComponent('Portfolio contact from ' + name);
+  const body = encodeURIComponent(message + '\n\nfrom ' + name + ' (' + email + ')');
+  window.location.href = 'mailto:gurtejpal@example.com?subject=' + subject + '&body=' + body;
 
-  status.textContent = `Thanks ${name} — your mail app should be opening now.`;
+  status.textContent = 'Thanks ' + name + ', your mail app should be opening now.';
   status.className = 'formstatus ok';
   form.reset();
 });
