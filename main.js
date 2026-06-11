@@ -121,11 +121,11 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 const projects = [
   {
     title: 'Axelot',
-    desc: 'A self-hosted, open alternative to Mem0 that gives AI agents persistent memory. My biggest build: storage, retrieval, and an API layer to write and recall context across sessions.',
+    desc: 'A self-hosted, open alternative to Mem0 that gives AI agents persistent memory. Our teams biggest build: storage, retrieval, and an API layer to write and recall context across sessions.',
     tags: ['Python', 'Vector DB', 'API'],
     glyph: 'AX',
     stamp: 'live',
-    repo: 'https://github.com/'
+    repo: null
   },
   {
     title: 'ATS Resume Screener',
@@ -133,7 +133,7 @@ const projects = [
     tags: ['Python', 'LLM API', 'NLP'],
     glyph: 'ATS',
     stamp: 'live',
-    repo: 'https://github.com/'
+    repo: null
   },
   {
     title: 'RA-Noti-Bot',
@@ -141,7 +141,7 @@ const projects = [
     tags: ['Python', 'Bash', 'Automation'],
     glyph: 'RA',
     stamp: 'live',
-    repo: 'https://github.com/'
+    repo: 'https://github.com/gurtejpalg/RA-Noti-Bot'
   },
   {
     title: 'NetDash',
