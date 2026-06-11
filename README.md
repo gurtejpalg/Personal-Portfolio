@@ -5,9 +5,6 @@ language is a **90s underground techno rave flyer** — specifically the deep-pu
 stark-white DJ Rolando / Underground Resistance flyers from London, Ontario — applied
 to a clean, professional content structure inspired by sunnypatel.net.
 
-**Live site:** _add your GitHub Pages URL here_
-**Repo:** _add your repo URL here_
-
 ---
 
 ## Project overview
