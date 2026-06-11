@@ -21,6 +21,79 @@ document.querySelectorAll('.navjump').forEach(btn => {
   });
 });
 
+/* ---------- CDJ: jog wheel + track readout ---------- */
+/* The platter rotation maps to scroll position (like a CDJ showing track
+   progress), and the readout/links light up the section currently in view. */
+(function cdj(){
+  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const wheel   = document.querySelector('.jogwheel');
+  const platter = document.querySelector('.jog-platter');
+  const readout = document.querySelector('.topbar__readout');
+  const trkNum  = document.getElementById('trackNum');
+  const trkName = document.getElementById('trackName');
+  const navBtns = [...document.querySelectorAll('.topbar__nav .navjump')];
+
+  // Track list: section id -> display number + short name (matches section labels)
+  const tracks = [
+    { id:'about',          num:'01', name:'ABOUT' },
+    { id:'skills',         num:'02', name:'SKILLS' },
+    { id:'certifications', num:'03', name:'CERTS' },
+    { id:'projects',       num:'04', name:'PROJECTS' },
+    { id:'experience',     num:'05', name:'EXPERIENCE' },
+    { id:'contact',        num:'06', name:'CONTACT' }
+  ];
+  const sections = tracks
+    .map(t => ({ ...t, el: document.getElementById(t.id) }))
+    .filter(t => t.el);
+
+  if(wheel && platter && !reduce) wheel.classList.add('is-driven');
+
+  let current = null;
+  let ticking = false;
+
+  function setActive(id){
+    if(id === current) return;
+    current = id;
+    const t = tracks.find(x => x.id === id);
+    if(readout){
+      readout.classList.toggle('is-playing', !!t);
+      if(trkNum)  trkNum.textContent  = t ? t.num  : '00';
+      if(trkName) trkName.textContent = t ? t.name : '—';
+    }
+    navBtns.forEach(b =>
+      b.classList.toggle('is-playing', !!t && b.dataset.target === id)
+    );
+  }
+
+  function update(){
+    ticking = false;
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    const prog = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+
+    // Scroll-driven rotation: a few full turns across the whole page.
+    if(platter && !reduce){
+      platter.style.setProperty('--spin', (prog * 1080).toFixed(1) + 'deg');
+    }
+
+    // Which section is "playing": the last one whose top has passed the
+    // readout line (a bit below the sticky bar).
+    const line = window.innerHeight * 0.28;
+    let active = null;
+    for(const s of sections){
+      if(s.el.getBoundingClientRect().top <= line) active = s.id;
+    }
+    setActive(active);
+  }
+
+  function onScroll(){
+    if(!ticking){ ticking = true; requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll, { passive:true });
+  update();
+})();
+
 /* mobile hamburger */
 const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('.topbar__nav');
@@ -125,6 +198,36 @@ projects.forEach(p => {
   grid.appendChild(card);
 });
 
+/* ---------- CERTIFICATIONS: inject cards with progress meters ---------- */
+/* pct is study/exam progress; done:true flips a cert to "earned" styling.
+   Edit these as you sit exams — bump pct, set done:true when you pass. */
+const certs = [
+  { name: 'CCNA',        issuer: 'Cisco',    pct: 65, done: false },
+  { name: 'Security+',   issuer: 'CompTIA',  pct: 40, done: false },
+  { name: 'AWS Cloud Practitioner', issuer: 'Amazon Web Services', pct: 30, done: false },
+  { name: 'AZ-900 Azure Fundamentals', issuer: 'Microsoft', pct: 20, done: false }
+];
+
+const certGrid = document.getElementById('certGrid');
+certs.forEach(c => {
+  const el = document.createElement('div');
+  el.className = 'cert ' + (c.done ? 'cert--done' : 'cert--wip');
+  el.style.setProperty('--pct', c.pct + '%');
+  el.innerHTML = `
+    <div class="cert__head">
+      <div>
+        <div class="cert__name">${c.name}</div>
+        <div class="cert__issuer">${c.issuer}</div>
+      </div>
+      <div class="cert__readout">
+        <span class="cert__pct">${c.done ? '✓' : c.pct + '%'}</span>
+        <span class="cert__status">${c.done ? 'earned' : 'in progress'}</span>
+      </div>
+    </div>
+    <div class="cert__track"><div class="cert__fill"></div></div>`;
+  certGrid.appendChild(el);
+});
+
 const form = document.getElementById('contactForm');
 const status = document.getElementById('formStatus');
 
@@ -145,7 +248,7 @@ form.addEventListener('submit', (e) => {
 
   const subject = encodeURIComponent('Portfolio contact from ' + name);
   const body = encodeURIComponent(message + '\n\nfrom ' + name + ' (' + email + ')');
-  window.location.href = 'mailto:gurtejpal@example.com?subject=' + subject + '&body=' + body;
+  window.location.href = 'mailto:gurtejpal@gmail.com?subject=' + subject + '&body=' + body;
 
   status.textContent = 'Thanks ' + name + ', your mail app should be opening now.';
   status.className = 'formstatus ok';

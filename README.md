@@ -12,24 +12,25 @@ to a clean, professional content structure inspired by sunnypatel.net.
 
 ## Project overview
 A single-page portfolio that lands on a flyer-style hero, then scrolls (or jumps via
-the nav) through About, Skills, Projects, Experience, and Contact. The goal is to
-present my telecom and aspiring-cloud profile to employers while letting my personality
-(techno, boxing, underground design) carry the brand.
+the nav) through About, Skills, Certifications, Projects, Experience, and Contact. The
+goal is to present my telecom and aspiring-cloud profile to employers while letting my
+personality (techno, boxing, underground design) carry the brand.
 
 ## Target audience
 Employers and co-op coordinators — people deciding whether to interview me for a
 telecom, networking, or junior cloud/DevOps role.
 
 ## Content strategy
-Minimalist copy, maximalist mood. Each section says one thing plainly: who I am, what
-I can do, what I've built, where I've worked, and how to reach me. The flyer framing
-("currently ON AIR", "get on the list", "put me on the bill") carries the theme without
-burying the real information.
+Minimalist in the same way as the DJ Rolando techno 90's flyer. Each section says one thing plainly: who I am, whatI can do, what I've built, where I've worked, and how to reach me. The flyer framing("currently ON AIR", "get on the list", "put me on the bill") carries the theme withoutburying the real information.
 
 ## Information organization
 - **Hero / flyer** — name, current role, the headline pitch, and a call to action.
-- **About** — short bio + career goal.
+- **About** — short bio + career goal, alongside a large grayscale portrait that fills
+  the height of the text column.
 - **Skills** — four columns: Telecom, Networking, Code, Cloud (learning) + a logo wall.
+- **Certifications** — one meter per cert (CCNA, Security+, AWS, Azure). In-progress
+  certs show a dashed "tape" bar with a percentage; earned certs flip to a solid bar
+  with a ✓ and an "earned" stamp.
 - **Projects** — card grid; each card has a shot, blurb, tech tags, and a GitHub link.
   Incomplete projects show "project not available" and "repo not yet public".
 - **Experience** — a short ruled timeline.
@@ -48,8 +49,16 @@ burying the real information.
 - Wireframe: see `wireframe.txt` (replace with your hand-drawn or digital wireframe).
 
 ## Interaction / functionality
+- **CDJ navigation** — the header is styled after a DJ CDJ player. A small SVG jog wheel
+  sits next to the GSG wordmark: it idles with a slow spin, then rotates with scroll so
+  its marker tracks your position down the page. A digital readout shows the current
+  "track" (`TRK ## · NAME`) with a blinking `CUE` pip, and the nav link for the section
+  in view lights up with a cue dot and underline. The links stay ordinary click-to-jump
+  navigation; the CDJ behavior is layered on top.
 - **Jump navigation** — nav buttons smooth-scroll to each section; mobile hamburger menu.
 - **Scroll reveal** — sections fade/slide in as they enter the viewport (IntersectionObserver).
+- **Certification meters** — progress bars animate from zero to each cert's value when the
+  section scrolls into view; generated from a data array in `main.js`.
 - **Project cards** — generated from a data array in `main.js`; easy to add/edit projects.
 - **Contact form** — client-side validation with inline feedback; on success it opens the
   visitor's mail client pre-filled (no backend needed for GitHub Pages). Swap the mailto
@@ -58,26 +67,21 @@ burying the real information.
   logo-wall hover.
 
 ## Technical overview
-- Plain `index.html`, `styles.css`, `main.js` — no build step, no framework.
+- Plain `index.html`, `styles.css`, `main.js` — 
 - CSS custom properties for the whole palette/type system; CSS grid + flexbox layout.
 - Responsive at 860px (stacked columns, mobile menu) and 480px (single column).
 - Accessibility: skip link, visible keyboard focus, alt text, `aria-live` form status,
-  `prefers-reduced-motion` respected, AA-contrast white-on-purple.
+  `prefers-reduced-motion` respected (the CDJ jog wheel holds still for those users while
+  the readout and active-link tracking still work), AA-contrast white-on-purple.
 
 ## Timeline / milestones
 1. Content gathering & wireframe — done
 2. Flyer hero + design system — done
 3. Sections (about → contact) — done
 4. Interactivity (nav, reveal, form) — done
-5. Deploy to GitHub Pages + add real résumé/links — _to do_
+5. Deploy to GitHub Pages + add real résumé/links — done
 
 ---
-
-## To finish before submitting
-- Replace placeholder links (`https://github.com/`, `https://linkedin.com/`) with your real profiles.
-- Add your real **`assets/resume.pdf`** (the contact section links to it).
-- Update the `mailto:` address in `main.js` (currently `gurtejpal@example.com`).
-- Add your live URLs at the top of this file.
 
 ## External resources
 - Fonts: Google Fonts (Archivo, Archivo Black, Spectral)
@@ -94,7 +98,7 @@ burying the real information.
 4. **Skills highlighted:** Telecom (cabling, AP/switch install, RJ45 termination, analog/VoIP), networking (homelab, CCNA), programming (Python, Bash, frameworks), aspiring cloud (AWS, Azure, Docker, Kubernetes, Terraform).
 5. **Projects:** RA-Noti-Bot, Axelot (mem-0 alternative), ATS résumé screener (AI wrapper), a SonicPi techno track, plus networking and cloud showcases.
 6. **Bio:** Current telecom technician (1 yr+) and student working through Security+, AWS, and CCNA.
-7. **Pages/sections:** Home landing with about built in, Projects, Experience.
+7. **Pages/sections:** Single-page: flyer hero, About, Skills, Certifications, Projects, Experience, Contact.
 8. **Career goal:** Cloud Network Engineer, DevOps, or Cloud Engineer.
 9. **Technologies:** Python, Bash, React/Tailwind; learning AWS, Azure, Docker, Kubernetes, Terraform.
 10. **Experience worth highlighting:** Telecom technician, 1 year+.
@@ -117,8 +121,8 @@ burying the real information.
 12. **Inspiration:** sunnypatel.net.
 
 ### Part 3 — Interactivity
-1. **Interactive elements:** Click-to-jump nav from the landing page to each section.
+1. **Interactive elements:** Click-to-jump nav from the landing page to each section, with a CDJ-style jog wheel and track readout in the header that follow scroll position.
 2. **Contact form:** Name/email/message with validation; opens a pre-filled email (or wire to Formspree/EmailJS to receive messages directly).
-3. **JS features:** Smooth-scroll nav, mobile menu, IntersectionObserver scroll reveal, data-driven project cards, form validation.
+3. **JS features:** Smooth-scroll nav, mobile menu, IntersectionObserver scroll reveal, scroll-driven CDJ jog wheel + section readout, data-driven project and certification cards, form validation.
 4. **Feedback:** Cursor/hover states, section reveals, card lift, inline form status messages.
 5. **Why:** Interactivity keeps the visitor engaged and feeling in control of the experience.

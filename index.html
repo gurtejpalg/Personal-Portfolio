@@ -12,11 +12,33 @@
 
   <header class="topbar">
     <a class="topbar__logo" href="#home" aria-label="Home">
-      <span>GSG</span>
+      <span class="jogwheel" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="jogwheel__svg">
+          <circle class="jog-ring jog-ring--outer" cx="50" cy="50" r="46" />
+          <circle class="jog-ring jog-ring--mid" cx="50" cy="50" r="38" />
+          <g class="jog-platter">
+            <circle class="jog-grooves" cx="50" cy="50" r="33" />
+            <circle class="jog-grooves" cx="50" cy="50" r="26" />
+            <circle class="jog-grooves" cx="50" cy="50" r="19" />
+            <line class="jog-marker" x1="50" y1="50" x2="50" y2="9" />
+            <circle class="jog-dot" cx="50" cy="13" r="4" />
+          </g>
+          <circle class="jog-spindle" cx="50" cy="50" r="8" />
+          <circle class="jog-spindle-hole" cx="50" cy="50" r="2.4" />
+        </svg>
+      </span>
+      <span class="topbar__wordmark">GSG</span>
     </a>
+    <div class="topbar__readout" aria-hidden="true">
+      <span class="readout__label">TRK</span>
+      <span class="readout__num" id="trackNum">00</span>
+      <span class="readout__name" id="trackName">—</span>
+      <span class="readout__cue" id="trackCue">CUE</span>
+    </div>
     <nav class="topbar__nav" aria-label="Primary">
       <button class="navjump" data-target="about">about</button>
       <button class="navjump" data-target="skills">skills</button>
+      <button class="navjump" data-target="certifications">certs</button>
       <button class="navjump" data-target="projects">projects</button>
       <button class="navjump" data-target="experience">experience</button>
       <button class="navjump navjump--cta" data-target="contact">hire me</button>
@@ -68,8 +90,8 @@
     <section id="about" class="block reveal">
       <div class="block__label"><span>01</span> ABOUT</div>
       <div class="about">
-        <div class="about__pic about__pic--mono">
-          <span>GSG</span>
+        <div class="about__pic">
+          <img src="assets/piratestudios.jpg" alt="Gurtejpal Singh Gurm" />
         </div>
         <div class="about__body">
           <h2>Telecom by trade, cloud by study.</h2>
@@ -140,13 +162,18 @@
       </div>
     </section>
 
+    <section id="certifications" class="block reveal">
+      <div class="block__label"><span>03</span> CERTIFICATIONS</div>
+      <div class="certs" id="certGrid"></div>
+    </section>
+
     <section id="projects" class="block reveal">
-      <div class="block__label"><span>03</span> PROJECTS</div>
+      <div class="block__label"><span>04</span> PROJECTS</div>
       <div class="projects" id="projectGrid"></div>
     </section>
 
     <section id="experience" class="block reveal">
-      <div class="block__label"><span>04</span> EXPERIENCE</div>
+      <div class="block__label"><span>05</span> EXPERIENCE</div>
       <div class="timeline">
         <article class="tl">
           <div class="tl__left">
@@ -196,7 +223,7 @@
     </section>
 
     <section id="contact" class="block reveal">
-      <div class="block__label"><span>05</span> CONTACT</div>
+      <div class="block__label"><span>06</span> CONTACT</div>
       <div class="contact">
         <div class="contact__pitch">
           <h2>Put me on the bill.</h2>
